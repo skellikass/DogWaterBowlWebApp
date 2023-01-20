@@ -1,0 +1,66 @@
+﻿@model Dog
+
+@{
+    var base64 = Convert.ToBase64String(Model.Picture);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+}
+
+
+<h3>Dog # @Model.DogID 's Settings</h3>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th></th>
+        <th>Name</th>
+        <th>Amount of Water Dispensed</th>
+        <th>Time Interval</th>
+    </tr>
+    <tr>
+        <td>@Model.DogID</td>
+        <td><img src="@imgSrc" /></td>
+        <td>@Model.Name</td>
+        <td>@Model.Amount cup(s)</td>
+        <td>@Model.TimeInterval minutes</td>
+    </tr>
+</table>
+
+<div style="display: block">
+    <a href="/Dog/EditDog/@Model.DogID">Update this Dog's Settings</a>
+</div>
+
+<div style="display: block">
+
+    @using (Html.BeginForm("DeleteDog", "Dog", "Post"))
+    {
+        <input type="hidden" asp-for="DogID" value="@Model.DogID" />
+        <input type="submit" onclick="return confirm('Are you sure you want to delete this dog?')" value="Delete this dog" />
+    }
+</div>
+
+<style>
+    img {
+        --color: #FA6900; /* the color of the border */
+        --border: 10px; /* the thickness of the border */
+        /*--offset: 30px; /* control the movement of the border */
+        /*--gap: 5px;*/ /* the gap on hover */
+
+        border-radius: 50%;
+        /*cursor: pointer;*/
+        /*padding: calc(var(--border) + var(--gap));*/
+        border: /*var(--offset)*/ solid #0000;
+        /*--_m: radial-gradient(50% 50%, #000 calc(100% - var(--offset)),#0000 calc(100% - var(--border)));
+        -webkit-mask: var(--_m);
+        mask: var(--_m);*/
+        /*--_g: #0000 calc(99% - var(--border)), var(--color) calc(100% - var(--border)) 99%,#0000;
+        --_s: var(--offset);
+        --_r: 100% 100% at;
+        background: radial-gradient(var(--_r) 0 0,var(--_g)) calc(100% + var(--_s)) calc(100% + var(--_s)), radial-gradient(var(--_r) 100% 0,var(--_g)) calc(0% - var(--_s)) calc(100% + var(--_s)), radial-gradient(var(--_r) 0 100%,var(--_g)) calc(100% + var(--_s)) calc(0% - var(--_s)), radial-gradient(var(--_r) 100% 100%,var(--_g)) calc(0% - var(--_s)) calc(0% - var(--_s));
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+        transition: .4s;*/
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+    }
+    </style>

@@ -23,14 +23,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dog" asp-action="Index">Dogs</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -39,6 +39,11 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - DogWaterBowlWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        <div class="container">
+            Dogs Page Background <a href="https://www.freepik.com/free-vector/vector-blue-clean-water-wave-with-air-bubbles-background_7852712.htm#query=water%20background&position=1&from_view=keyword">
+                Image by upklyak
+            </a> on Freepik
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

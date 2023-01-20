@@ -1,3 +1,7 @@
+using DogWaterBowlWebApp.Models;
+using MySql.Data.MySqlClient;
+using System.Data;
+
 namespace DogWaterBowlWebApp
 {
     public class Program
@@ -8,6 +12,15 @@ namespace DogWaterBowlWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IDbConnection>((s) =>
+            {
+                IDbConnection connection = new MySqlConnection(builder.Configuration.GetConnectionString("dogwaterbowl"));
+                connection.Open();
+                return connection;
+            });
+
+            builder.Services.AddTransient<IDogRepo, DogRepo>();
 
             var app = builder.Build();
 

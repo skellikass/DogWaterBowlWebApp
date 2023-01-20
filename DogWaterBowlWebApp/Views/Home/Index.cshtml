@@ -2,7 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+
+    .bg-image {
+        background-color: black;
+        background-image: url("uploaded/water-drop.jpeg");
+        height: 100vh;
+        width: 100vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        position: fixed;
+        padding: 0;
+        margin-left: -13.5px;
+    }
+
+    .heading {
+        position: relative;
+        text-align: center;
+    }
+</style>
+
+<div class="bg-image"></div>
+<div class="text-center heading">
+    <h1 class="display-3" color="black">Welcome</h1>
+    <h2 class="display-6" color="black">to the World's Smartest Dog Water Bowl</h2>
 </div>

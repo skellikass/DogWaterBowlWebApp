@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Dog>
+
+<div class="bg-image"></div>
+
+<h2 class="display-2 heading">Dogs</h2>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th></th>
+        <th>Name</th>
+        <th>Amount of Water Dispensed</th>
+        <th>Minimum Time Interval</th>
+    </tr>
+
+    @foreach (var dog in @Model)
+    {
+        <tr>
+            @if (dog.Name == null || dog.Name.Length == 0)
+            {
+                @if (dog.Picture == null)
+                {
+                    <td>@dog.DogID</td>
+                    <td>
+                        <div style="display: block">
+                            <a href="/Dog/AddDog/@dog.DogID">Add New Dog</a>
+                        </div>
+                    </td>
+                    <td><a href=/Dog/ViewDog/@dog.DogID>@dog.Name</a></td>
+                    <td></td>
+                    <td></td>
+                }
+            }
+            else
+            {
+                <td>@dog.DogID</td>
+                var base64 = Convert.ToBase64String(dog.Picture);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                <td><a href=/Dog/ViewDog/@dog.DogID><img src="@imgSrc" /></a></td>
+                <td>@dog.Name</td>
+                <td>@dog.Amount cup(s)</td>
+                <td>@dog.TimeInterval minutes</td>
+            }
+        </tr>
+    }
+</table>
+
+<script>
+    var colors = ['#FA6900', '#0B486B', '#BD1550', '#E0D268', '#008080'];
+    var images = document.querySelectorAll("img");
+    for (var i = 0; i < images.length; i++) {
+        images[i].style.setProperty('--color', colors[i]);
+    }
+</script>
+
+<style>
+    .bg-image {
+        /*background-color: black;*/
+        background-image: url("uploaded/water-freepik.jpg");
+        height: 100vh;
+        width: 100vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(8px);
+        -webkit-filter: blur(5px);
+        position: fixed;
+        padding: 0;
+        margin-left: -13.5px;
+        margin-top: 40px;
+    }   
+
+    img {
+        --color: #FA6900; /* the color of the border */
+        --border: 10px; /* the thickness of the border */
+        --offset: 30px; /* control the movement of the border */
+        --gap: 5px; /* the gap on hover */
+
+        border-radius: 50%;
+        cursor: pointer;
+        padding: calc(var(--border) + var(--gap));
+        border: var(--offset) solid #0000;
+        --_m: radial-gradient(50% 50%, #000 calc(100% - var(--offset)),#0000 calc(100% - var(--border)));
+        -webkit-mask: var(--_m);
+        mask: var(--_m);
+        --_g: #0000 calc(99% - var(--border)), var(--color) calc(100% - var(--border)) 99%,#0000;
+        --_s: var(--offset);
+        --_r: 100% 100% at;
+        background: radial-gradient(var(--_r) 0 0,var(--_g)) calc(100% + var(--_s)) calc(100% + var(--_s)), radial-gradient(var(--_r) 100% 0,var(--_g)) calc(0% - var(--_s)) calc(100% + var(--_s)), radial-gradient(var(--_r) 0 100%,var(--_g)) calc(100% + var(--_s)) calc(0% - var(--_s)), radial-gradient(var(--_r) 100% 100%,var(--_g)) calc(0% - var(--_s)) calc(0% - var(--_s));
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+        transition: .4s;
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+    }
+
+        img:hover {
+            --_s: 0px
+        }
+</style>
+
