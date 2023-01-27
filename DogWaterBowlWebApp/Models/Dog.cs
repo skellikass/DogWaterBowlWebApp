@@ -6,8 +6,6 @@ namespace DogWaterBowlWebApp.Models
     {
         public byte[] Picture { get; set; }
         public int DogID { get; set; }
-
-        [Required]
         public string Name { get; set; }
         public double Amount { get; set; }
         public int TimeInterval { get; set; }

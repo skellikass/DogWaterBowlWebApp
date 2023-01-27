@@ -32,37 +32,26 @@ namespace DogWaterBowlWebApp.Controllers
             }
             return View(dog);
         }
+        [HttpPost]
         public IActionResult UpdateDogToDatabase(Dog dogToUpdate, IFormFile picture)
         {
-            //if (picture.ContentType != "image/jpeg" && picture.ContentType != "image/png")
-            //{
-            //    ViewData["error"] = "Invalid file type. Please upload a jpeg or png image.";
-            //    return View();
-            //}
-            try
+            if (picture != null && picture.Length > 0)
             {
-                if (picture != null && picture.Length > 0)
-                {
-                    dogToUpdate.Picture = new byte[picture.Length];
-                    picture.OpenReadStream().Read(dogToUpdate.Picture, 0, (int)picture.Length);
-                    Console.WriteLine(picture);
-                    Console.WriteLine(dogToUpdate);
-                    //--OR--
-                    //using (var memoryStream = new MemoryStream())
-                    //{
-                    //    picture.CopyTo(memoryStream);
-                    //    dogToUpdate.Picture = memoryStream.ToArray();
-                    //}
-                }
-                repo.EditDog(dogToUpdate);
-                ViewData["success"] = "Changes saved successfully!";
-                Console.WriteLine("success");
+                dogToUpdate.Picture = new byte[picture.Length];
+                picture.OpenReadStream().Read(dogToUpdate.Picture, 0, (int)picture.Length);
+                //--OR--
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    picture.CopyTo(memoryStream);
+                //    dogToUpdate.Picture = memoryStream.ToArray();
+                //}
             }
-            catch (Exception ex)
+            else
             {
-                ViewData["error"] = "Oh no! Something went wrong. Please try again or contact web support." + ex.Message;
-                Console.WriteLine("error");
+                var currentDog = repo.GetDog(dogToUpdate.DogID);
+                dogToUpdate.Picture = currentDog.Picture;
             }
+            repo.EditDog(dogToUpdate);
             return RedirectToAction("Index", new { id = dogToUpdate.DogID });
         }
         public IActionResult AddDog(int id)
@@ -87,27 +76,7 @@ namespace DogWaterBowlWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        
-    }
 
-    //[HttpPost]
-    //public async Task<IActionResult> UploadPicture(Dog dog, IFormFile picture)
-    //{
-    //    if (picture != null && picture.Length > 0)
-    //    {
-    //        dog.Picture = new byte[picture.Length];
-    //        picture.OpenReadStream().Read(dog.Picture, 0, (int)picture.Length);
-    //    }
-    //    using (var connection = new MySqlConnection("dogwaterbowl"))
-    //    {
-    //        connection.Open();
-    //        using (var command = new MySqlCommand("UPDATE dogs SET Picture = @picture", connection))
-    //        {
-    //            command.Parameters.AddWithValue("@picture", dog.Picture);
-    //            command.ExecuteNonQuery();
-    //            return RedirectToAction("Index");
-    //        }
-    //    }
-    //}
+    }
 }
 

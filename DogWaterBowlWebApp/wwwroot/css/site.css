@@ -56,11 +56,12 @@ input[type=number] {
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 3rem;
     border-radius: 20px;
+    position: relative;
 }
 
     .image-preview-container img {
         width: 100%;
-        /*display: none;*/
+        display: none;
         margin-bottom: 30px;
     }
 
@@ -115,4 +116,59 @@ td {
 
 .heading {
     position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: dodgerblue;
+    font-weight: 600;
+}
+
+.update-style {
+    border: 1px solid royalblue;
+    background-color: #C6E6FB;
+    width: fit-content;
+    padding: 0.375rem 0.75rem;
+    margin: 10px;
+    margin-left: 150px;
+    margin-top: 100px;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.delete-style {
+    border: 1px solid midnightblue;
+    background-color: cornflowerblue;
+    color: darkblue;
+    width: fit-content;
+    padding: 0.375rem 0.75rem;
+    margin: 10px;
+    margin-left: 0px;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-weight: 400;
+    margin-left: 150px;
+}
+
+.add-style {
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid midnightblue;
+    background-color: cornflowerblue;
+    color: darkblue;
+    width: fit-content;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

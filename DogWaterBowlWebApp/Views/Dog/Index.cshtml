@@ -16,19 +16,27 @@
     @foreach (var dog in @Model)
     {
         <tr>
-            @if (dog.Name == null || dog.Name.Length == 0)
+            @if (dog.Picture == null)
             {
-                @if (dog.Picture == null)
+                @if (dog.Name == null || dog.Name.Length == 0)
                 {
                     <td>@dog.DogID</td>
                     <td>
-                        <div style="display: block">
-                            <a href="/Dog/AddDog/@dog.DogID">Add New Dog</a>
+                        <div class="add-style">
+                            <a style="font-size: large" href="/Dog/AddDog/@dog.DogID">Add New Dog</a>
                         </div>
                     </td>
                     <td><a href=/Dog/ViewDog/@dog.DogID>@dog.Name</a></td>
                     <td></td>
                     <td></td>
+                }
+                else
+                {
+                    <td>@dog.DogID</td>
+                    <td><img src="uploaded/Woof Gang Water System.png" /></td>
+                    <td><a href=/Dog/ViewDog/@dog.DogID>@dog.Name</a></td>
+                    <td>@dog.Amount cup(s)</td>
+                    <td>@dog.TimeInterval minutes</td>
                 }
             }
             else
@@ -55,7 +63,6 @@
 
 <style>
     .bg-image {
-        /*background-color: black;*/
         background-image: url("uploaded/water-freepik.jpg");
         height: 100vh;
         width: 100vw;
@@ -68,7 +75,7 @@
         padding: 0;
         margin-left: -13.5px;
         margin-top: 40px;
-    }   
+    }
 
     img {
         --color: #FA6900; /* the color of the border */

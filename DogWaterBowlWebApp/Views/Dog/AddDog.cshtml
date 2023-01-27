@@ -1,5 +1,7 @@
 ﻿@model Dog
 
+
+
 <h2>Add a New Dog</h2>
 
 @using (Html.BeginForm("AddDogToDatabase", "Dog", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -10,17 +12,33 @@
     <input type="text" name="Name" class="form-control" value="@Model.Name" required />
 
     <label asp-for="Amount" class="control-label">How much water do you want to dispense? (In cups)</label>
-    <input type="number" step="0.01" name="Amount" value="@Model.Amount cups" />
+    <input type="number" step="0.01" name="Amount" value="@Model.Amount cups" required />
 
     <label asp-for="TimeInterval" class="control-label">How long do you want to wait until that amount is allowed to be dispensed again? (In minutes)</label>
-    <input type="number" step="1" name="TimeInterval" value="@Model.TimeInterval minutes" />
+    <input type="number" step="1" name="TimeInterval" value="@Model.TimeInterval minutes" required />
 
     <div class="row">
         <label asp-for="Picture" class="control-label">Choose a profile picture for your dog!</label>
         <div class="form-group col-md-6">
-            <input type="file" class="form-control" name="Picture" accept="image/*" value="@Model.Picture"/>
+            <input type="file" class="form-control" name="Picture" accept="image/*" value="@Model.Picture" required />
         </div>
     </div>
 
     <input type="submit" value="Add Dog" class="btn btn-primary" />
 }
+<style>
+    .bg-image {
+        background-image: url("uploaded/water-freepik.jpg");
+        height: 100vh;
+        width: 100vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(8px);
+        -webkit-filter: blur(5px);
+        position: fixed;
+        padding: 0;
+        margin-left: -13.5px;
+        margin-top: 40px;
+    }
+</style>

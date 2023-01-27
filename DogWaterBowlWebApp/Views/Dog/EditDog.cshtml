@@ -1,5 +1,7 @@
 ﻿@model Dog
 
+
+
 <h2>Edit Dog # @Model.DogID</h2>
 
 @{
@@ -11,23 +13,23 @@
 {
     <input asp-for="DogID" type="hidden" value="@Model.DogID" />
 
-    <label asp-for="Name" class="text-layout">Name</label>
+    <label asp-for="Name" class="control-label">Name</label>
     <input type="text" name="Name" class="form-control" value="@Model.Name" />
 
-    <label asp-for="Amount" class="text-layout">Amount of Water Dispensed (in cups)</label>
+    <label asp-for="Amount" class="control-label">Amount of Water Dispensed (in cups)</label>
     <input type="number" step="0.01" name="Amount" class="form-control" value="@Model.Amount" />
 
-    <label asp-for="TimeInterval" class="text-layout">Minimum Time Interval (in minutes)</label>
+    <label asp-for="TimeInterval" class="control-label">Minimum Time Interval (in minutes)</label>
     <input type="number" step="1" name="TimeInterval" class="form-control" value="@Model.TimeInterval" />
 
     <div class="row">
-        <label class="text-layout">Picture:</label>
+        <label asp-for="Picture" class="control-label">Keep Current Photo or Upload New Photo:</label>
         <div class="form-group col-md-6">
-            <div class="image-preview-container">
+            @*<div class="image-preview-container">*@
                 <img src="@imgSrc" id="preview" />
-                <label asp-for="Picture">Upload Image</label>
-                <input type="file" class="form-control" id="Picture" name="Picture" accept="image/*" onclick="previewImage(event)" value="@Model.Picture" />
-            </div>
+                @*<label asp-for="Picture">Upload Image</label>*@
+            <input type="file" class="form-control" name="Picture" accept="image/*" onchange="previewImage(event)" value="@Model.Picture" />
+            @*</div>*@
         </div>
     </div>
 
@@ -35,19 +37,21 @@
 }
 
 
-@if (ViewData["success"] != null)
-{
-    <div class="alert alert-success">@ViewData["success"]</div>
-}
-else if (ViewData["error"] != null)
-{
-    <div class="alert alert-danger">@ViewData["error"]</div>
-}
-
-@*<div id="message"></div>*@
-
-
 <style>
+    .bg-image {
+        background-image: url("uploaded/water-freepik.jpg");
+        height: 100vh;
+        width: 100vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(8px);
+        -webkit-filter: blur(5px);
+        position: fixed;
+        padding: 0;
+        margin-left: -13.5px;
+        margin-top: 40px;
+    }
     img {
         --color: #FA6900; /* the color of the border */
         --border: 10px; /* the thickness of the border */
