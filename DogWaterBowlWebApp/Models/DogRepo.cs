@@ -31,8 +31,8 @@ namespace DogWaterBowlWebApp.Models
 
         public void EditDog(Dog dogToEdit)
         {
-            _connection.Execute("UPDATE dogs SET Name = @name, Amount = @amount, TimeInterval = @timeInterval, Picture = (SELECT @picture) WHERE Name = @name",
-                new { name = dogToEdit.Name, amount = dogToEdit.Amount, timeInterval = dogToEdit.TimeInterval, picture = dogToEdit.Picture });
+            _connection.Execute("UPDATE dogs SET Name = @name, Amount = @amount, TimeInterval = @timeInterval, Picture = (SELECT @picture) WHERE DogID = @id",
+                new { name = dogToEdit.Name, amount = dogToEdit.Amount, timeInterval = dogToEdit.TimeInterval, picture = dogToEdit.Picture, id = dogToEdit.DogID });
         }
 
         public IEnumerable<Dog> GetAllDogs()

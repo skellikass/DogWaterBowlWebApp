@@ -32,6 +32,12 @@ namespace DogWaterBowlWebApp.Controllers
             }
             return View(dog);
         }
+        public IActionResult AddDog(int id)
+        {
+            Dog dog = repo.GetDog(id);
+            return View(dog);
+        }
+
         [HttpPost]
         public IActionResult UpdateDogToDatabase(Dog dogToUpdate, IFormFile picture)
         {
@@ -52,13 +58,9 @@ namespace DogWaterBowlWebApp.Controllers
                 dogToUpdate.Picture = currentDog.Picture;
             }
             repo.EditDog(dogToUpdate);
-            return RedirectToAction("Index", new { id = dogToUpdate.DogID });
+            return RedirectToAction("Index"/*, new { id = dogToUpdate.DogID }*/);
         }
-        public IActionResult AddDog(int id)
-        {
-            Dog dog = repo.GetDog(id);
-            return View(dog);
-        }
+
         [HttpPost]
         public IActionResult AddDogToDatabase(Dog dogToAdd, IFormFile picture)
         {
@@ -68,7 +70,7 @@ namespace DogWaterBowlWebApp.Controllers
                 picture.OpenReadStream().Read(dogToAdd.Picture, 0, (int)picture.Length);
             }
             repo.AddDog(dogToAdd);
-            return RedirectToAction("Index", new { id = dogToAdd.DogID });
+            return RedirectToAction("Index"/*, new { id = dogToAdd.DogID }*/);
         }
         public IActionResult DeleteDog(Dog dogToDelete)
         {

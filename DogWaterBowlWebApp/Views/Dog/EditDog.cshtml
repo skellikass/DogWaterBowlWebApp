@@ -2,6 +2,7 @@
 
 
 
+
 <h2>Edit Dog # @Model.DogID</h2>
 
 @{
@@ -26,32 +27,20 @@
         <label asp-for="Picture" class="control-label">Keep Current Photo or Upload New Photo:</label>
         <div class="form-group col-md-6">
             @*<div class="image-preview-container">*@
-                <img src="@imgSrc" id="preview" />
-                @*<label asp-for="Picture">Upload Image</label>*@
+            <img src="@imgSrc" id="preview" />
+            @*<label asp-for="Picture">Upload Image</label>*@
             <input type="file" class="form-control" name="Picture" accept="image/*" onchange="previewImage(event)" value="@Model.Picture" />
             @*</div>*@
         </div>
     </div>
 
-    <input type="submit" name="upload" value="Update" class="btn btn-primary" />
+    <input type="submit" name="upload" value="Update" class="btn btn-primary" style="margin-top: 10px" />
 }
 
 
+
 <style>
-    .bg-image {
-        background-image: url("uploaded/water-freepik.jpg");
-        height: 100vh;
-        width: 100vw;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        filter: blur(8px);
-        -webkit-filter: blur(5px);
-        position: fixed;
-        padding: 0;
-        margin-left: -13.5px;
-        margin-top: 40px;
-    }
+    
     img {
         --color: #FA6900; /* the color of the border */
         --border: 10px; /* the thickness of the border */
