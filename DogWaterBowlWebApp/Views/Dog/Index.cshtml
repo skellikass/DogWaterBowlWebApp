@@ -22,8 +22,9 @@
                 {
                     <td>@dog.DogID</td>
                     <td>
-                        <div class="add-style">
-                            <a style="font-size: large" href="/Dog/AddDog/@dog.DogID">Add New Dog</a>
+                        <div style="padding: 100px 0; margin: 0 0 0 50px">
+                            @Html.ActionLink("Add New Dog", "AddDog", "Dog", new { id = dog.DogID}, new { @class = "add-style"} )
+                            @*<input type="button" class="align-middle add-style" style="font-size: large" href="/Dog/AddDog/@dog.DogID" value="Add New Dog" />*@
                         </div>
                     </td>
                     <td><a href=/Dog/ViewDog/@dog.DogID>@dog.Name</a></td>
@@ -33,8 +34,8 @@
                 else
                 {
                     <td>@dog.DogID</td>
-                    <td><img src="uploaded/Woof Gang Water System.png" /></td>
-                    <td><a href=/Dog/ViewDog/@dog.DogID>@dog.Name</a></td>
+                    <td><a href=/Dog/ViewDog/@dog.DogID><img src="uploaded/Woof Gang Water System.png" /></a></td>
+                    <td>@dog.Name</td>
                     <td>@dog.Amount cup(s)</td>
                     <td>@dog.TimeInterval minutes</td>
                 }
